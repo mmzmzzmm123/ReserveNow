@@ -1,0 +1,62 @@
+server:
+  port: 8080
+spring:
+    datasource:
+       driver-class-name: org.postgresql.Driver
+       url: jdbc:postgresql://reserve-now-reserve-now-1.f.aivencloud.com:28636/restaurant_reservation_sys
+       username: avnadmin
+       password: AVNS_SJnSwX3k8OdUeIVp86-
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        ddl-auto: none
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+    # File upload configuration
+    servlet:
+      multipart:
+        enabled: true
+        max-file-size: 20MB
+        max-request-size: 100MB
+    # Static resource access configuration
+    web:
+      resources:
+        static-locations: classpath:/static/, file:/Users/taoyuxuan/Documents/ReserveNow/hd/src/main/resources/uploads
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.room.hd.entity
+  type-enums-package: com.room.hd.enums
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-level: debug
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# JWT configuration
+jwt:
+  secret: JbwKpYTkgSgzPwVQoYXXvGnTqqkUDnqZjsPbaBpdkGgLLwpVxAFLNvzaKdVnvPcS
+  expiration: 864000000 # One day
+  header: Authorization
+  tokenPrefix: Bearer 
+
+## Logging configuration
+#logging:
+#  level:
+#    com.room.hd: debug
+#    org.springframework: warn
+
+# File upload configuration
+file:
+  upload:
+    path: /Users/taoyuxuan/Documents/ReserveNow/hd/src/main/resources/uploads
+  access:
+    url: http://localhost:8080/uploads  # URL prefix for file access
+
